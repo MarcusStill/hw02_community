@@ -6,9 +6,9 @@ Group = get_user_model()
 
 
 class Group(models.Model):
-    title = models.CharField(max_length=200, verbose_name="Название группы")
+    title = models.CharField(max_length=200, verbose_name='Название группы')
     slug = models.SlugField(max_length=255, unique=True,
-                            db_index=True, verbose_name="URL")
+                            db_index=True, verbose_name='URL')
     description = models.TextField()
 
     def __str__(self):
@@ -23,5 +23,5 @@ class Post(models.Model):
         on_delete=models.CASCADE,
         related_name='posts'
     )
-    group = models.ForeignKey(Group, on_delete=models.CASCADE,
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL,
                               blank=True, null=True)
